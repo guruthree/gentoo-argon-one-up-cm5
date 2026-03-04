@@ -1,0 +1,1 @@
+video=HDMI-A-2:1920x1200@60e console=serial0,115200 console=tty1 root=UUID=<UNENCRYPTED UUID GOES HERE> rootfstype=ext4 elevator=deadline resume=/dev/nvme0n1p2 fsck.repair=yes rootwait

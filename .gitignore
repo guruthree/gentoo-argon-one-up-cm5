@@ -1,0 +1,149 @@
+
+# Ignore everything
+/*
+
+# We allow specific directories through a somewhat convoluted set of ignore lines.
+# Don't ignore FOLDER: !/FOLDER
+# Ignore all files in FOLDER: /FOLDER/*
+# Don't ignore FILE in FOLDER: !/FOLDER/FILE
+# Needs to be repeated ad infinitum for sub-folders
+
+# /boot/
+!/boot
+/boot/*
+!/boot/cmdline.txt
+!/boot/config.txt
+
+# /boot/overlays/
+!/boot/overlays
+/boot/overlays/*
+!/boot/overlays/noeth.dtbo
+
+# /etc/
+!/etc
+/etc/*
+!/etc/crypttab
+!/etc/fstab
+!/etc/hostname
+!/etc/hosts
+!/etc/locale.gen
+!/etc/localtime
+
+# /etc/env.d/
+!/etc/env.d
+/etc/env.d/*
+!/etc/env.d/90xession
+
+# /etc/modules-load.d/
+!/etc/modules-load.d
+/etc/modules-load.d/*
+!/etc/modules-load.d/i2c
+
+# /etc/portage/
+!/etc/portage
+/etc/portage/*
+!/etc/portage/make.conf
+!/etc/portage/make.profile
+!/etc/portage/package.unmask
+
+# /etc/portage/package.accept_keywords/
+!/etc/portage/package.accept_keywords
+/etc/portage/package.accept_keywords/*
+!/etc/portage/package.accept_keywords/games
+!/etc/portage/package.accept_keywords/mate
+!/etc/portage/package.accept_keywords/network
+!/etc/portage/package.accept_keywords/portage
+!/etc/portage/package.accept_keywords/raspberrypi
+
+# /etc/portage/package.use/
+!/etc/portage/package.use
+/etc/portage/package.use/*
+!/etc/portage/package.use/00cpu-flags
+!/etc/portage/package.use/bluez
+!/etc/portage/package.use/network
+!/etc/portage/package.use/portage
+!/etc/portage/package.use/raspberrypi
+
+# /etc/udev/
+!/etc/udev
+/etc/udev/*
+
+# /etc/udev/rules.d/
+!/etc/udev/rules.d
+/etc/udev/rules.d/*
+!/etc/udev/rules.d/99-vcio-rewrite.rules
+
+# /etc/ugrd/
+!/etc/ugrd
+/etc/ugrd/*
+!/etc/ugrd/config.toml
+
+# /lib/
+!/lib
+/lib/*
+
+# /lib/firmware/
+!/lib/firmware
+/lib/firmware/*
+
+# /lib/firmware/brcm/
+!/lib/firmware/brcm
+/lib/firmware/brcm/*
+!/lib/firmware/brcm/BCM4345C0.hcd
+!/lib/firmware/brcm/BCM4345C0.raspberrypi,500.hcd
+!/lib/firmware/brcm/BCM4345C0.raspberrypi,5-compute-module.hcd
+!/lib/firmware/brcm/BCM4345C0.raspberrypi,5-model-b.hcd
+!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,500.bin
+!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,500.clm_blob
+!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-compute-module.bin
+!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-compute-module.clm_blob
+!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-model-b.bin
+!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-model-b.clm_blob
+
+# /root/
+!/root
+/root/*
+!/root/noeth-overlay.dts
+
+# /usr/
+!/usr
+/usr/*
+
+# /usr/share/
+!/usr/share
+/usr/share/*
+
+# /usr/share/X11/
+!/usr/share/X11
+/usr/share/X11/*
+
+# /usr/share/X11/xorg.conf.d/
+!/usr/share/X11/xorg.conf.d
+/usr/share/X11/xorg.conf.d/*
+!/usr/share/X11/xorg.conf.d/99-rpi5.conf
+
+# /usr/src/
+!/usr/src
+/usr/src/*
+
+# /usr/src/linux/
+!/usr/src/linux
+/usr/src/linux/*
+!/usr/src/linux/.config
+
+# /var/
+!/var
+/var/*
+
+# /var/lib/
+!/var/lib
+/var/lib/*
+
+# /var/lib/portage/
+!/var/lib/portage
+/var/lib/portage/*
+!/var/lib/portage/world
+
+# For the git repository
+!/README.md
+!/.gitignore

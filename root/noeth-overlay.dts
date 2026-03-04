@@ -1,0 +1,17 @@
+// Disable onboard Ethernet
+// https://forums.raspberrypi.com/viewtopic.php?t=290965
+// dtc -@ -Hepapr -I dts -O dtb -o noeth.dtbo noeth-overlay.dts
+
+/dts-v1/;
+/plugin/;
+
+/ {
+        compatible = "brcm,bcm2712";
+
+        fragment@0 {
+                target-path = "ethernet0";
+                __overlay__ {
+                        status = "disabled";
+                };
+        };
+};

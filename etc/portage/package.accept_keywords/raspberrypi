@@ -1,0 +1,6 @@
+dev-embedded/raspberrypi-utils
+sys-boot/raspberrypi-firmware
+#sys-firmware/raspberrypi-wifi-ucode
+sys-kernel/raspberrypi-image
+sys-kernel/raspberrypi-sources
+dev-embedded/rpi-eeprom
