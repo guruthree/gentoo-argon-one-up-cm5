@@ -78,28 +78,6 @@
 /etc/ugrd/*
 !/etc/ugrd/config.toml
 
-# /lib/
-!/lib
-/lib/*
-
-# /lib/firmware/
-!/lib/firmware
-/lib/firmware/*
-
-# /lib/firmware/brcm/
-!/lib/firmware/brcm
-/lib/firmware/brcm/*
-!/lib/firmware/brcm/BCM4345C0.hcd
-!/lib/firmware/brcm/BCM4345C0.raspberrypi,500.hcd
-!/lib/firmware/brcm/BCM4345C0.raspberrypi,5-compute-module.hcd
-!/lib/firmware/brcm/BCM4345C0.raspberrypi,5-model-b.hcd
-!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,500.bin
-!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,500.clm_blob
-!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-compute-module.bin
-!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-compute-module.clm_blob
-!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-model-b.bin
-!/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-model-b.clm_blob
-
 # /root/
 !/root
 /root/*
@@ -108,6 +86,28 @@
 # /usr/
 !/usr
 /usr/*
+
+# /usr/lib/
+!/usr/lib
+/usr/lib/*
+
+# /usr/lib/firmware/
+!/usr/lib/firmware
+/usr/lib/firmware/*
+
+# /usr/lib/firmware/brcm/
+!/usr/lib/firmware/brcm
+/usr/lib/firmware/brcm/*
+!/usr/lib/firmware/brcm/BCM4345C0.hcd
+!/usr/lib/firmware/brcm/BCM4345C0.raspberrypi,500.hcd
+!/usr/lib/firmware/brcm/BCM4345C0.raspberrypi,5-compute-module.hcd
+!/usr/lib/firmware/brcm/BCM4345C0.raspberrypi,5-model-b.hcd
+!/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,500.bin
+!/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,500.clm_blob
+!/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-compute-module.bin
+!/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-compute-module.clm_blob
+!/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-model-b.bin
+!/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,5-model-b.clm_blob
 
 # /usr/share/
 !/usr/share
