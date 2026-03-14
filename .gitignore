@@ -83,6 +83,9 @@
 /root/*
 !/root/noeth-overlay.dts
 
+# /root/ontainer
+!/root/container
+
 # /usr/
 !/usr
 /usr/*
