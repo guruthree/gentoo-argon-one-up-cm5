@@ -29,11 +29,14 @@ For larger packages you can cross-platform build them in a container on your x86
 If you use another distribution some additional steps will be needed to use a [Portage container](https://hub.docker.com/r/gentoo/portage) instead of local Portage.
 These instructions were written with [rootless](https://github.com/containers/podman/blob/main/README.md#rootless) [Podman](https://podman.io/) in mind, but will probably work with Docker.
 
+There are two container helper scripts:
+
+ - [build.sh](./root/container/build.sh) creates the container image.
+ - [run.sh](/root/container/run.sh) runs the container.
+
 1. Setup `qemu-aarch64` and `systemd-binfmt` according to the [Embedded Handbook](https://wiki.gentoo.org/wiki/Embedded_Handbook/General/Compiling_with_QEMU_user_chroot).
-2. Update the configuration repository in [build.sh](./root/container/build.sh).
-3. To build the container image run `bash build.sh`
-4. Choose interactive or sshd in [run.sh](/root/container/run.sh).
-5. To run the container for the first time run `bash run.sh`
+2. Update the configuration repository in `build.sh` if you have cloned this repo, then run `bash build.sh`.
+3. Run `bash run.sh` and choose either a temporary interactive container or a long lived container accessed over SSH.
 
 To connect to the container using ssh run:
 
