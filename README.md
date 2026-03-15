@@ -33,4 +33,10 @@ For larger packages you can cross-platform build them in a container on your x86
 4. Choose interactive or sshd in [run.sh](/root/container/run.sh).
 5. Run `bash run.sh`
 
+To connect over ssh run:
+
+```shell
+ssh localhost -p 52222 -l root -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+```
+
 To be written...

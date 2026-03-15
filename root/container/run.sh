@@ -2,12 +2,12 @@
 
 PODMAN_CONTAINER_NAME="gentoo-aarch64-build-container"
 
-# Interactive shell
+# Uncomment for interactive shell interface
 PODMAN_ARGUMENTS="-it --rm"
-PODMAN_COMMAND="bin/bash" 
+PODMAN_COMMAND="/bin/bash"
 
-# Background sshd
-#PODMAN_ARGUMENTS=""
+# Uncomment to launch container with sshd in the background
+#PODMAN_ARGUMENTS="-it"
 #PODMAN_COMMAND=""
 
 source binfmt_check.sh

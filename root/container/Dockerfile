@@ -2,7 +2,7 @@ FROM docker.io/gentoo/stage3:nomultilib-systemd
 
 # setup make.conf
 RUN echo PORTAGE_RO_DISTDIRS=\"/mnt/distfiles\" >> /etc/portage/make.conf
-RUN echo FEATURES=\"getbinpkg binpkg-request-signature -ipc-sandbox -network-sandbox -pid-sandbox\" >> /etc/portage/make.conf
+RUN echo -e FEATURES=\"getbinpkg binpkg-request-signature -ipc-sandbox -network-sandbox -pid-sandbox\"\\n >> /etc/portage/make.conf
 RUN eselect profile set default/linux/arm64/23.0/desktop/systemd
 
 # install packages
@@ -36,5 +36,8 @@ RUN CONFIG_PROTECT='/.' cfg-update -ua
 RUN echo "find / -mount -name '._cfg*' | egrep -q '.*'" >> /etc/bash/bashrc.d/99-cfgs.sh
 RUN echo "if [ $? -eq 0 ]; then echo 'Run CONFIG_PROTECT=/. cfg-update -u to update config files!'; fi" >> /etc/bash/bashrc.d/99-cfgs.sh
 # && or || ?
+
+# regenerate locales - if we don't pipe here locale-gen fails for no apparent reason
+RUN locale-gen | tee /dev/null
 
 CMD ["/usr/sbin/sshd", "-D", "-e"]
