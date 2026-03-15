@@ -26,17 +26,48 @@ To be written...
 ## Build container
 
 For larger packages you can cross-platform build them in a container on your x86-64 Gentoo system.
+If you use another distribution some additional steps will be needed to use a [Portage container](https://hub.docker.com/r/gentoo/portage) instead of local Portage.
+These instructions were written with [rootless](https://github.com/containers/podman/blob/main/README.md#rootless) [Podman](https://podman.io/) in mind, but will probably work with Docker.
 
 1. Setup `qemu-aarch64` and `systemd-binfmt` according to the [Embedded Handbook](https://wiki.gentoo.org/wiki/Embedded_Handbook/General/Compiling_with_QEMU_user_chroot).
 2. Update the configuration repository in [build.sh](./root/container/build.sh).
-3. Run `bash build.sh`
+3. To build the container image run `bash build.sh`
 4. Choose interactive or sshd in [run.sh](/root/container/run.sh).
-5. Run `bash run.sh`
+5. To run the container for the first time run `bash run.sh`
 
-To connect over ssh run:
+To connect to the container using ssh run:
 
 ```shell
 ssh localhost -p 52222 -l root -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 ```
 
-To be written...
+Then assuming the default image name of `gentoo-aarch64-build-container`, to stop the container run:
+
+```shell
+podman kill $(podman ps --sort runningfor | grep gentoo-aarch64-build-container | head -n1 | awk '{ print $1}')
+```
+
+To restart the container run:
+
+```shell
+podman start $(podman ps -a --sort runningfor | grep gentoo-aarch64-build-container | head -n1 | awk '{ print $1}')
+```
+
+To remove the container after it's been stopped, run:
+
+```shell
+podman container rm $(podman ps -a --sort runningfor | grep gentoo-aarch64-build-container | head -n1 | awk '{ print $1}')
+```
+
+To remove the container image after the container's been removed, run:
+
+```shell
+podman image rm gentoo-aarch64-build-container
+```
+
+To clean dangling containers run
+
+```shell
+podman system prune --volumes
+```
+

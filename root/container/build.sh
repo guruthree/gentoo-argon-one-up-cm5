@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PODMAN_CONTAINER_NAME="gentoo-aarch64-build-container"
+PODMAN_IMAGE_NAME="gentoo-aarch64-build-container"
 
 source binfmt_check.sh
 
@@ -10,4 +10,4 @@ podman build --platform linux/arm64 \
     --volume=/var/cache/distfiles/:/mnt/distfiles/:ro \
     --volume=$HOME/.ssh:/mnt/ssh/:ro \
     --no-hosts --no-hostname \
-    -t $PODMAN_CONTAINER_NAME -f Dockerfile
+    -t $PODMAN_IMAGE_NAME -f Dockerfile

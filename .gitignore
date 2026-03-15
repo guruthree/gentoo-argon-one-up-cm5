@@ -85,6 +85,11 @@
 
 # /root/ontainer
 !/root/container
+/root/container/*
+!/root/container/binfmt_check.sh
+!/root/container/build.sh
+!/root/container/Dockerfile
+!/root/container/run.sh
 
 # /usr/
 !/usr

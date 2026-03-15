@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PODMAN_CONTAINER_NAME="gentoo-aarch64-build-container"
+PODMAN_IMAGE_NAME="gentoo-aarch64-build-container"
 
 # Uncomment for interactive shell interface
 PODMAN_ARGUMENTS="-it --rm"
@@ -19,6 +19,6 @@ podman run --platform linux/arm64/v8 \
     --mount=type=bind,src=/var/cache/distfiles,dst=/mnt/distfiles/,ro=true \
     -p 52222:22 --no-hosts --no-hostname \
     $PODMAN_ARGUMENTS \
-    $PODMAN_CONTAINER_NAME \
+    $PODMAN_IMAGE_NAME \
     $PODMAN_COMMAND
 
