@@ -44,9 +44,14 @@ To setup:
     3. Update `/etc/binfmt.d/qemu.conf` replacing `qemu-aarch64` with `qemu-aarch64-wrapper` and `/usr/bin/qemu-aarc64` with `/usr/local/bin/qemu-aarch64-wrapper`.
     4. Run `systemctl restart systemd-binfmt.service` to restart the binfmt service.
 3. Update the configuration repository in `build.sh` if you have cloned this repo, then run `bash build.sh`.
-4. Run `bash run.sh` and choose either a temporary interactive container or a long lived container accessed over SSH.
+4. Run `bash run.sh` and choose either a temporary interactive container or a long lived persistent container accessed over SSH.
 
-To connect to the container using ssh run:
+### Container interaction
+
+`run.sh` can be used to start a temporary container, start a persistent container accepting SSH connections, or connect to an existing persistent container by selecting the appropriate option.
+The persistent container can also be interacted with using the following commands.
+
+To connect to the persistent container using SSH run:
 
 ```shell
 ssh localhost -p 52222 -l root -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no

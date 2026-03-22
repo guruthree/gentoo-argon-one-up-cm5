@@ -46,6 +46,7 @@ if [ "$MODE" == "sshd" ]; then
             # Not found running, so start it
             echo "Re-starting container..."
             podman start $SSHD_CONTAINER
+            sleep 1s # Let the container & sshd start
         fi
     fi
 fi
