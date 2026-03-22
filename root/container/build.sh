@@ -5,7 +5,9 @@ PODMAN_IMAGE_NAME="gentoo-aarch64-build-container"
 if [ $(uname -m) != 'aarch64' ]; then
     source binfmt_check.sh
     PODMAN_QEMU_BIND="--volume=/usr/bin/qemu-aarch64:/usr/bin/qemu-aarch64:ro"
-    PODMAN_QEMU_BIND="$PODMAN_QEMU_BIND --volume=/usr/local/bin/qemu-aarch64-wrapper:/usr/local/bin/qemu-aarch64-wrapper:ro"
+    if [ -f /usr/local/bin/qemu-aarch64-wrapper ]; then
+        PODMAN_QEMU_BIND="$PODMAN_QEMU_BIND --volume=/usr/local/bin/qemu-aarch64-wrapper:/usr/local/bin/qemu-aarch64-wrapper:ro"
+    fi
 else
     PODMAN_QEMU_BIND=""
 fi

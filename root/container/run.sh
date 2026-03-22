@@ -27,7 +27,9 @@ done
 if [ $(uname -m) != 'aarch64' ]; then
     source binfmt_check.sh
     PODMAN_QEMU_BIND="--mount=type=bind,src=/usr/bin/qemu-aarch64,dst=/usr/bin/qemu-aarch64,ro=true"
-    PODMAN_QEMU_BIND="$PODMAN_QEMU_BIND --mount=type=bind,src=/usr/local/bin/qemu-aarch64-wrapper,dst=/usr/local/bin/qemu-aarch64-wrapper,ro=true"
+    if [ -f /usr/local/bin/qemu-aarch64-wrapper ]; then
+        PODMAN_QEMU_BIND="$PODMAN_QEMU_BIND --mount=type=bind,src=/usr/local/bin/qemu-aarch64-wrapper,dst=/usr/local/bin/qemu-aarch64-wrapper,ro=true"
+    fi
 else
     PODMAN_QEMU_BIND=""
 fi
