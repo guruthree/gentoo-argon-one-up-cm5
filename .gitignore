@@ -90,6 +90,7 @@
 !/root/container/build.sh
 !/root/container/Dockerfile
 !/root/container/run.sh
+!/root/container/qemu-aarch64-wrapper.c
 
 # /usr/
 !/usr

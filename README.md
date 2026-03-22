@@ -29,14 +29,22 @@ For larger packages you can cross-platform build them in a container on your x86
 If you use another distribution some additional steps will be needed to use a [Portage container](https://hub.docker.com/r/gentoo/portage) instead of local Portage.
 These instructions were written with [rootless](https://github.com/containers/podman/blob/main/README.md#rootless) [Podman](https://podman.io/) in mind, but will probably work with Docker.
 
-There are two container helper scripts:
+There are three container helpers:
 
  - [build.sh](./root/container/build.sh) creates the container image.
  - [run.sh](/root/container/run.sh) runs the container.
+ - [qemu-aarch64-wrapper.c](/root/container/qemu-aarch64-wrapper.c) runs `qemu-aarch64` with optimised arguments.
+
+To setup:
 
 1. Setup `qemu-aarch64` and `systemd-binfmt` according to the [Embedded Handbook](https://wiki.gentoo.org/wiki/Embedded_Handbook/General/Compiling_with_QEMU_user_chroot).
-2. Update the configuration repository in `build.sh` if you have cloned this repo, then run `bash build.sh`.
-3. Run `bash run.sh` and choose either a temporary interactive container or a long lived container accessed over SSH.
+2. (Optional) Improve `qemu-aarch64` performance by 15-30%.
+    1. Compile `qemu-aarch64-wrapper.c` by running `gcc qemu-aarch64-opts.c -static -o qemu-aarch64-wrapper`. 
+    2. Place `qemu-aarch64-wrapper` in `/usr/local/bin`.
+    3. Update `/etc/binfmt.d/qemu.conf` replacing `qemu-aarch64` with `qemu-aarch64-wrapper` and `/usr/bin/qemu-aarc64` with `/usr/local/bin/qemu-aarch64-wrapper`.
+    4. Run `systemctl restart systemd-binfmt.service` to restart the binfmt service.
+3. Update the configuration repository in `build.sh` if you have cloned this repo, then run `bash build.sh`.
+4. Run `bash run.sh` and choose either a temporary interactive container or a long lived container accessed over SSH.
 
 To connect to the container using ssh run:
 
