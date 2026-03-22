@@ -40,7 +40,7 @@ DO_LAUNCH=1
 # Check if an sshd container instance exists
 if [ "$MODE" == "sshd" ]; then
     SSHD_CONTAINER=$(podman ps -a --sort runningfor | grep $PODMAN_IMAGE_NAME | grep 52222 | head -n1 | awk '{ print $1}')
-    if [ $? -eq 0 ]; then
+    if [ "$SSHD_CONTAINER" != "" ]; then
         DO_LAUNCH=0
         podman ps | grep -q $SSHD_CONTAINER
         # Check if it's running
