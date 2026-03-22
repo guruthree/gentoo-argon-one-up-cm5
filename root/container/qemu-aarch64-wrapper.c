@@ -1,11 +1,13 @@
-// Compile with gcc qemu-aarch64-opts.c -static -o qemu-aarch64-wrapper
+// Compile with gcc qemu-aarch64-wrapper.c -static -o qemu-aarch64-wrapper
 
-#include <string.h>
-#include <unistd.h>
 #include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char **argv, char **envp) {
-    char *newargv[6];
+    char **newargv = malloc(sizeof(char*) * (argc + 5));
+    if (!newargv) return 1;
 
     // Program name
     newargv[0] = argv[0];
@@ -14,15 +16,12 @@ int main(int argc, char **argv, char **envp) {
     newargv[1] = "-cpu";
     newargv[2] = "cortex-a76";
 
-    // Marginally faster load times
-    newargv[3] = "-L";
-    newargv[4] = "/usr/aarch64-unknown-linux-gnu";
-
     // Program being run
-    memcpy(&newargv[5], &argv[1], sizeof(*argv) * (argc -1));
-    newargv[argc + 4] = NULL;
+    memcpy(&newargv[3], &argv[1], sizeof(char*) * (argc - 1));
+    newargv[argc + 2] = NULL;
 
-    // Run qemu
+    // Run qemu (requires /usr/bin/qemu-aarch64 to be mounted in the container)
     int fd = open("/usr/bin/qemu-aarch64", O_RDONLY);
+    if (fd < 0) return 2;
     return fexecve(fd, newargv, envp);
 }

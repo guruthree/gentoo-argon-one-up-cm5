@@ -1,9 +1,9 @@
-FROM docker.io/gentoo/stage3:nomultilib-systemd
+FROM docker.io/gentoo/stage3:arm64-desktop-systemd
 
 # setup make.conf
 RUN echo PORTAGE_RO_DISTDIRS=\"/mnt/distfiles\" >> /etc/portage/make.conf
 RUN echo -e FEATURES=\"getbinpkg binpkg-request-signature -ipc-sandbox -network-sandbox -pid-sandbox\"\\n >> /etc/portage/make.conf
-RUN eselect profile set default/linux/arm64/23.0/desktop/systemd
+#RUN eselect profile set default/linux/arm64/23.0/desktop/systemd
 
 # install packages
 RUN getuto  # binpkg keys
