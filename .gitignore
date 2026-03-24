@@ -34,6 +34,15 @@
 /etc/env.d/*
 !/etc/env.d/90xession
 
+# /etc/bash/
+!/etc/bash
+/etc/bash/*
+
+# /etc/bash/bashrc.d/
+!/etc/bash/bashrc.d
+/etc/bash/bashrc.d/*
+!/etc/bash/bashrc.d/95-quickpkg.sh
+
 # /etc/modules-load.d/
 !/etc/modules-load.d
 /etc/modules-load.d/*
@@ -45,6 +54,11 @@
 !/etc/portage/make.conf
 !/etc/portage/make.profile
 !/etc/portage/package.unmask
+
+# /etc/portage/binrepos.conf/
+!/etc/portage/binrepos.conf
+/etc/portage/binrepos.conf/*
+!/etc/portage/binrepos.conf/local.conf
 
 # /etc/portage/package.accept_keywords/
 !/etc/portage/package.accept_keywords

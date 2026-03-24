@@ -32,8 +32,8 @@ These instructions were written with [rootless](https://github.com/containers/po
 There are three container helpers:
 
  - [build.sh](./root/container/build.sh) creates the container image.
- - [run.sh](/root/container/run.sh) runs the container.
- - [qemu-aarch64-wrapper.c](/root/container/qemu-aarch64-wrapper.c) runs `qemu-aarch64` with optimised arguments.
+ - [run.sh](./root/container/run.sh) runs the container.
+ - [qemu-aarch64-wrapper.c](./root/container/qemu-aarch64-wrapper.c) runs `qemu-aarch64` with optimised arguments.
 
 To setup:
 
@@ -86,4 +86,36 @@ To clean dangling containers run
 ```shell
 podman system prune --volumes
 ```
+
+### Using the build container
+
+Connect to the container and then emerge the package you want to turn into a binary package.
+Once built, create the binary package by running
+
+```shell
+quickpkg <SOFTWARE>
+```
+
+where `<SOFTWARE>` is something like `www-client/firefox`.
+
+Alternatively, package everything currently installed by running
+
+```shell
+quickpkg $(qlist -IC)
+```
+
+(this could take some time).
+
+Copy `/var/cache/binpkgs/` to the Argon ONE UP, e.g.,
+
+```shell
+ssh -N <CONTAINER HOST> -L 55552:localhost:55552  # Port forward
+sudo rsync -ravz -e 'ssh -p 2222' --progress localhost:/var/cache/binpkgs/ /var/cache/binpkgs/  # Copy
+```
+
+where `<CONTAINER HOST>` is the system on which the build container is running.
+
+Copy the [local repository configuration](./etc/portage/binrepos.conf/local.conf) is copied to `/etc/portage/binrepos.conf/local.conf` on the Argon One UP.
+
+You should now be able to emerge a binary package created in the build container.
 
