@@ -109,11 +109,11 @@ quickpkg $(qlist -IC)
 Copy `/var/cache/binpkgs/` to the Argon ONE UP, e.g.,
 
 ```shell
-ssh -N <CONTAINER HOST> -L 55552:localhost:55552  # Port forward
-sudo rsync -ravz -e 'ssh -p 2222' --progress localhost:/var/cache/binpkgs/ /var/cache/binpkgs/  # Copy
+# From the container host, connect to the Argon ONE UP using SSH reverse port forwarding to give the Argon access to the build container
+ssh -R 52222:localhost:52222 -A <ARGON ONE UP IP>
+# Once connected to the Argon ONE UP, rsync the binpkgs (sudo will prompt your user password)
+sudo -E rsync -ravz -e 'ssh -l root -p 52222 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' --progress localhost:/var/cache/binpkgs/ /var/cache/binhost/buildcontainer/
 ```
-
-where `<CONTAINER HOST>` is the system on which the build container is running.
 
 Copy the [local repository configuration](./etc/portage/binrepos.conf/local.conf) is copied to `/etc/portage/binrepos.conf/local.conf` on the Argon One UP.
 

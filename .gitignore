@@ -58,7 +58,7 @@
 # /etc/portage/binrepos.conf/
 !/etc/portage/binrepos.conf
 /etc/portage/binrepos.conf/*
-!/etc/portage/binrepos.conf/local.conf
+!/etc/portage/binrepos.conf/buildcontainer.conf
 
 # /etc/portage/package.accept_keywords/
 !/etc/portage/package.accept_keywords
